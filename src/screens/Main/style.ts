@@ -1,6 +1,15 @@
 import styled from "styled-components";
-import Image from "../../images/default.jpg";
+
 type BackgroundProps = {
+  colorPalette: {
+    first: string;
+    second: string;
+    third: string;
+  };
+  imageUrl: string;
+};
+
+type MainProps = {
   colorPalette: {
     first: string;
     second: string;
@@ -18,11 +27,11 @@ export const BackgroundImage = styled.div<BackgroundProps>`
       ${(props) => props.colorPalette.first},
       ${(props) => props.colorPalette.second}
     ),
-    url(${Image});
+    url(${(props) => props.imageUrl});
   background-size: cover;
   background-position: center;
 `;
-export const MainWrapper = styled.div<BackgroundProps>`
+export const MainWrapper = styled.div<MainProps>`
   display: flex;
   width: 70vw;
   min-height: 70vh;

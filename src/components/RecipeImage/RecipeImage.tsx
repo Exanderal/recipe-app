@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import { ImageWrapper } from "./style";
-const RecipeImage: FC = () => {
-  return <ImageWrapper />;
+type ImageProps = {
+  imageUrl: string;
+};
+
+const RecipeImage: FC<ImageProps> = ({ imageUrl }) => {
+  return <ImageWrapper imageUrl={imageUrl} />;
 };
 
 export default RecipeImage;

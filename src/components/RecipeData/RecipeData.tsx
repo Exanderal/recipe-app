@@ -17,40 +17,41 @@ import {
   RecipeDetails,
   RecipeDetailsCircle,
   RecipeDetailsParagraph,
+  RecipeLinkHeading,
 } from "./style";
-const RecipeData: FC = () => {
+import { Recipe } from "../../types/models/Recipe";
+import colors from "../../utils/colors";
+type Props = {
+  recipe: Recipe;
+  setColorPalette: React.Dispatch<
+    React.SetStateAction<{
+      first: string;
+      second: string;
+      third: string;
+    }>
+  >;
+};
+
+const RecipeData: FC<Props> = ({
+  recipe: { summary, sponacularScore, sourceUrl, title, readyInMinutes },
+  setColorPalette,
+}) => {
   return (
     <Wrapper>
       <RecipeWrapper>
-        <RecipeTime>Cooking time: 15 min</RecipeTime>
-        <RecipeTitle>Sikhye Korean Sweet</RecipeTitle>
+        <RecipeTime>Cooking time: {readyInMinutes}</RecipeTime>
+        <RecipeTitle>{title}</RecipeTitle>
         <RecipeAuthor>
           <RecipeAuthorImg src={Avatar} />
           <RecipeAuthorWrapper>
             <RecipeAuthorName>Lyanna Goyle</RecipeAuthorName>
-            <RecipeAuthorRecipeAmount>24 recipes</RecipeAuthorRecipeAmount>
+            <RecipeAuthorRecipeAmount>
+              {sponacularScore} recipes
+            </RecipeAuthorRecipeAmount>
           </RecipeAuthorWrapper>
         </RecipeAuthor>
-        <RecipeDescription>
-          Preparation for spice rub: Combine all ingredients in small bowl. Do
-          ahead: Can be made 2 days ahead. Store airtight at room temperature.
-          For chimichurri sauce: Combine first 8 ingredients in blender; blend
-          until almost smooth. Add 1/4 of parsley, 1/4 of cilantro, and 1/4 of
-          mint; blend until incorporated. Add remaining herbs in 3 more
-          additions, pureeing until almost smooth after each addition. Do ahead:
-          Can be made 3 hours ahead. Cover; chill. For beef tenderloin: Let beef
-          stand at room temperature 1 hour. Prepare barbecue (high heat). Pat
-          beef dry with paper towels; brush with oil. Sprinkle all over with
-          spice rub, using all of mixture (coating will be thick). Place beef on
-          grill; sear 2 minutes on each side. Reduce heat to medium-high. Grill
-          uncovered until instant-read thermometer inserted into thickest part
-          of beef registers 130F for medium-rare, moving beef to cooler part of
-          grill as needed to prevent burning, and turning occasionally, about 40
-          minutes. Transfer to platter; cover loosely with foil and let rest 15
-          minutes. Thinly slice beef crosswise. Serve with chimichurri sauce.
-          *Available at specialty foods stores and from tienda.com
-        </RecipeDescription>
-        <RecipeDetails>
+        <RecipeDescription dangerouslySetInnerHTML={{ __html: summary }} />
+        <RecipeDetails href={sourceUrl} target="blank">
           <RecipeDetailsParagraph>
             Find more about recipe right here
           </RecipeDetailsParagraph>
@@ -59,7 +60,13 @@ const RecipeData: FC = () => {
           </RecipeDetailsCircle>
         </RecipeDetails>
       </RecipeWrapper>
-      <RecipeLink>
+      <RecipeLink
+        onClick={() => {
+          const randomColorNumber = Math.floor(Math.random() * colors.length);
+          setColorPalette(colors[randomColorNumber]);
+        }}
+      >
+        <RecipeLinkHeading>Next Recipe</RecipeLinkHeading>
         <RecipeLinkCircle>
           <RecipeLinkArrow />
         </RecipeLinkCircle>

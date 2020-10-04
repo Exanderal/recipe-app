@@ -30,10 +30,11 @@ export const RecipeTitle = styled.h1`
   font-weight: 500;
 `;
 
-export const RecipeDescription = styled.p`
+export const RecipeDescription = styled.div`
   padding: 1rem;
   text-indent: 0.3rem;
   color: ${(props) => props.theme.color.darkgrey};
+  white-space: pre-line;
 `;
 
 export const RecipeAuthorWrapper = styled.div`
@@ -82,10 +83,12 @@ export const RecipeLinkArrow = styled(FaArrowRight)`
   width: 1rem;
 `;
 
-export const RecipeDetails = styled.div`
+export const RecipeDetails = styled.a`
   display: flex;
   align-items: center;
   margin-top: auto;
+  text-decoration: none;
+  color: black;
 `;
 
 export const RecipeDetailsParagraph = styled.p``;
@@ -100,4 +103,13 @@ export const RecipeDetailsCircle = styled.div`
   margin-left: 0.5rem;
   background-color: ${(props) => props.theme.color.lightgrey};
   cursor: pointer;
+`;
+
+export const RecipeLinkHeading = styled.h2`
+  position: absolute;
+  transform: rotate(90deg);
+  color: ${(props) => props.theme.color.white};
+  white-space: nowrap;
+  top: 50%;
+  left: 0;
 `;
