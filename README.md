@@ -4,7 +4,7 @@ App was kickstarted with create-react-app
 
 ## Purpose ?
 
-It was created for non commercial use as a second of five projects in challenge 5 projects in 5 days using React and Typescript. Because of family matter I had to postpone this one by one day. In this projects I'm using https://spoonacular.com/ API.
+It was created for non commercial use. In this projects I'm using https://spoonacular.com/ API.
 
 ## Live version
 
